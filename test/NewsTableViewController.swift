@@ -30,14 +30,14 @@ class NewsTableViewController: UITableViewController {
     }
     
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let currentOffset = scrollView.contentOffset.y
-        let maxOffset = scrollView.contentSize.height - scrollView.frame.height
-        if maxOffset - currentOffset <= 44 && viewModel.result!.count != 0 {
-            spinner.startAnimating()
-            spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width * 2, height: CGFloat(44))
-            tableView.tableFooterView = self.spinner
-            tableView.tableFooterView?.isHidden = false
-            if page <= 4 {
+        if page <= 4 {
+            let currentOffset = scrollView.contentOffset.y
+            let maxOffset = scrollView.contentSize.height - scrollView.frame.height
+            if maxOffset - currentOffset <= 44 && viewModel.result!.count != 0 {
+                spinner.startAnimating()
+                spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: tableView.bounds.width * 2, height: CGFloat(44))
+                tableView.tableFooterView = self.spinner
+                tableView.tableFooterView?.isHidden = false
                 page += 1
                 viewModel.loadData(page: page)
             }

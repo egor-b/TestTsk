@@ -13,6 +13,7 @@ struct News {
     var description: String?
     var date: String?
     var image: String?
+    var link: String?
     
     init() {}
     init(dict: Dictionary<String,AnyObject>) {
@@ -39,5 +40,12 @@ struct News {
         } else {
             self.image = "none"
         }
+        
+        if let _link = dict["url"] {
+            self.link = _link as? String
+        } else {
+            self.link = "none"
+        }
+        
     }
 }

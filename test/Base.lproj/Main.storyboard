@@ -89,7 +89,7 @@
         <scene sceneID="mps-Yh-A2h">
             <objects>
                 <tableViewController id="xE5-AO-SfY" customClass="NewsDescTableViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xkg-vW-ynU">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xkg-vW-ynU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -108,10 +108,47 @@
                             <outlet property="delegate" destination="xE5-AO-SfY" id="xiD-D1-wkt"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="voh-FH-N2m" kind="show" identifier="shoWeb" id="92f-f9-YHt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SA6-dG-M96" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2142" y="140"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="7j3-Ah-agR">
+            <objects>
+                <viewController id="voh-FH-N2m" customClass="WebViewController" customModule="test" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iyt-md-t2E">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lao-Ru-tp3">
+                                <rect key="frame" x="0.0" y="140" width="414" height="722"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PuV-hI-QRv" firstAttribute="bottom" secondItem="lao-Ru-tp3" secondAttribute="bottom" id="UVL-IP-JRe"/>
+                            <constraint firstItem="lao-Ru-tp3" firstAttribute="top" secondItem="PuV-hI-QRv" secondAttribute="top" id="c1l-MQ-ln8"/>
+                            <constraint firstItem="PuV-hI-QRv" firstAttribute="trailing" secondItem="lao-Ru-tp3" secondAttribute="trailing" id="cUs-rw-r1V"/>
+                            <constraint firstItem="lao-Ru-tp3" firstAttribute="leading" secondItem="PuV-hI-QRv" secondAttribute="leading" id="ejn-wf-SU6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PuV-hI-QRv"/>
+                    </view>
+                    <connections>
+                        <outlet property="webVC" destination="lao-Ru-tp3" id="4Ih-ZN-O8S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jqA-b6-aPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3116" y="138"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sN6-3N-Jpi">

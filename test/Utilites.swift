@@ -30,8 +30,8 @@ class Utilites {
                     completion(newsPic)
                 }
             } else {
-//                print("UUURRRLLL", URL(string: url) ?? "")
-                if let data = try? Data(contentsOf: URL(string: url)!) {
+                let link = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                if let data = try? Data(contentsOf: URL(string: link)!) {
                     if let image = UIImage(data: data) {
                         DispatchQueue.main.async {
                             self.newsPic.setObject(image as AnyObject, forKey: url as AnyObject)
