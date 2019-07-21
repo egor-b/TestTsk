@@ -44,6 +44,10 @@ class NewsDescTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "shoWeb", sender: nil)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
