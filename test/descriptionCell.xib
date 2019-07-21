@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="NewsDescTableViewCell" customModule="test" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RXq-1J-K4W">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="160"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="160" id="yyh-yl-QyY"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDv-fv-P5s">
+                    <rect key="frame" x="24" y="168" width="366" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="svz-NL-xzU">
+                    <rect key="frame" x="8" y="208.5" width="398" height="154.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yg2-QG-Mnx">
+                    <rect key="frame" x="364" y="371" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="svz-NL-xzU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="0i1-pa-Q7s"/>
+                <constraint firstItem="RXq-1J-K4W" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0mj-Gf-zsB"/>
+                <constraint firstItem="yg2-QG-Mnx" firstAttribute="top" secondItem="svz-NL-xzU" secondAttribute="bottom" constant="8" id="BDv-fU-W0O"/>
+                <constraint firstItem="RXq-1J-K4W" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ez4-Vw-DMA"/>
+                <constraint firstItem="svz-NL-xzU" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="GBF-Ab-nnG"/>
+                <constraint firstItem="svz-NL-xzU" firstAttribute="top" secondItem="XDv-fv-P5s" secondAttribute="bottom" constant="20" id="NWb-FJ-erG"/>
+                <constraint firstItem="XDv-fv-P5s" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="PxC-7S-PDR"/>
+                <constraint firstAttribute="bottom" secondItem="yg2-QG-Mnx" secondAttribute="bottom" constant="8" id="RvX-wa-vXw"/>
+                <constraint firstItem="XDv-fv-P5s" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UDe-0H-7st"/>
+                <constraint firstItem="RXq-1J-K4W" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bzO-aE-UIv"/>
+                <constraint firstItem="XDv-fv-P5s" firstAttribute="top" secondItem="RXq-1J-K4W" secondAttribute="bottom" constant="8" id="fLF-Xa-OEP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yg2-QG-Mnx" secondAttribute="trailing" constant="8" id="lMt-hn-yTj"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="date" destination="yg2-QG-Mnx" id="1Yt-RZ-oCM"/>
+                <outlet property="descLbl" destination="svz-NL-xzU" id="ao9-oU-WJH"/>
+                <outlet property="imgView" destination="RXq-1J-K4W" id="C5S-pk-JGy"/>
+                <outlet property="titleLbl" destination="XDv-fv-P5s" id="fRo-ZB-TmX"/>
+            </connections>
+        </view>
+    </objects>
+</document>
