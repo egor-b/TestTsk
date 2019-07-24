@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import Network
 
 class NewsTableViewController: UITableViewController {
 
     let viewModel = NewsTableViewModel()
+    let monitor = NWPathMonitor()
+    let queue = DispatchQueue.global(qos: .background)
     let spinner = UIActivityIndicatorView(style: .gray)
     var page = 1
     
@@ -21,12 +24,32 @@ class NewsTableViewController: UITableViewController {
         viewModel.reload = { [weak self] in
             self?.tableView.reloadData()
         }
-        viewModel.loadData(page: page)
+        checkConnection()
+        monitor.start(queue: queue)
+//        viewModel.loadData(page: page)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func checkConnection() {
+        
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                self.viewModel.loadData(page: self.page)
+                self.monitor.cancel()
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Connection Lost", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { (UIAlertAction) in
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
+        
     }
     
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -39,6 +62,8 @@ class NewsTableViewController: UITableViewController {
                 tableView.tableFooterView = self.spinner
                 tableView.tableFooterView?.isHidden = false
                 page += 1
+                checkConnection()
+                monitor.start(queue: queue)
                 viewModel.loadData(page: page)
             }
         }

@@ -38,11 +38,11 @@ class NewsTableViewModel {
                 } catch {
                     
                 }
-            case .failure(let error):
-                print(error)
+            case .failure( _): break
             }
         }
     }
+    
     
     
 }

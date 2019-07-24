@@ -24,6 +24,9 @@ class Utilites {
     let newsPic = NSCache<AnyObject, AnyObject>()
 
     func loadPic(url: String, completion:@escaping(UIImage?) -> Swift.Void) {
+        if url == "" {
+            return
+        }
         DispatchQueue.global().async {
             if let newsPic = self.newsPic.object(forKey: url as AnyObject) as? UIImage {
                 DispatchQueue.main.async {
