@@ -81,8 +81,8 @@ class NewsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsCell", for: indexPath) as! NewsTableViewCell
 
         cell.titleLbl.text = viewModel.result?[indexPath.row].title ?? ""
-        Utilites.shared().loadPic(url: viewModel.result?[indexPath.row].image ?? "q", completion: { (img:UIImage?) in
-            cell.imgView.image = img
+        Utilites.shared().loadPic(url: viewModel.result?[indexPath.row].image ?? "q", completion: { (img:Data?) in
+            cell.imgView.image = UIImage(data: img!)
         })
         
         return cell

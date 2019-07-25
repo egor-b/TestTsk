@@ -24,23 +24,21 @@ class Utilites {
     
     let newsPic = NSCache<AnyObject, AnyObject>()
 
-    func loadPic(url: String, completion:@escaping(UIImage?) -> Swift.Void) {
+    func loadPic(url: String, completion:@escaping(Data?) -> Swift.Void) {
         if url == "" {
             return
         }
         DispatchQueue.global().async {
-            if let newsPic = self.newsPic.object(forKey: url as AnyObject) as? UIImage {
+            if let newsPic = self.newsPic.object(forKey: url as AnyObject) as? Data {
                 DispatchQueue.main.async {
                     completion(newsPic)
                 }
             } else {
                 let link = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
                 if let data = try? Data(contentsOf: URL(string: link)!) {
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.newsPic.setObject(image as AnyObject, forKey: url as AnyObject)
-                            completion(image)
-                        }
+                    DispatchQueue.main.async {
+                        self.newsPic.setObject(data as AnyObject, forKey: url as AnyObject)
+                        completion(data)
                     }
                 }
             }
@@ -66,27 +64,12 @@ class Utilites {
             return
         }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "News")
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Newss")
         do {
             let result = try managedContext.fetch(fetchRequest)
             completion(result as AnyObject)
         } catch let error as NSError {
             completion("\(error), \(error.userInfo)" as AnyObject)
-        }
-    }
-    
-    func cashDate() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "News", in: managedContext)!
-        let city = NSManagedObject(entity: entity, insertInto: managedContext)
-        city.setValue("", forKey: "name")
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
         }
     }
 }

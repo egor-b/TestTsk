@@ -37,8 +37,8 @@ class NewsDescTableViewController: UITableViewController {
         cell.descLbl.text = news?.description
         cell.date.text = Utilites.shared().convertTimeStamp(date: news!.date!)
         
-        Utilites.shared().loadPic(url: news?.image ?? "none") { (img:UIImage?) in
-            cell.imgView.image = img
+        Utilites.shared().loadPic(url: news?.image ?? "none") { (img:Data?) in
+            cell.imgView.image = UIImage(data: img!)
         }
        
         return cell
