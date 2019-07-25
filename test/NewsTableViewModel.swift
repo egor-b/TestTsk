@@ -38,7 +38,8 @@ class NewsTableViewModel {
                 } catch {
                     
                 }
-            case .failure( _): break
+            case .failure( let error):
+                NotificationCenter.default.post(name: .checkConnection, object: error.localizedDescription)
             }
         }
     }

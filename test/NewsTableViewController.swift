@@ -19,14 +19,13 @@ class NewsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(checkConnection), name: .checkConnection, object: nil)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
         viewModel.reload = { [weak self] in
             self?.tableView.reloadData()
         }
-        checkConnection()
-        monitor.start(queue: queue)
-//        viewModel.loadData(page: page)
+        viewModel.loadData(page: page)
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -35,18 +34,18 @@ class NewsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    func checkConnection() {
+    @objc func checkConnection() {
+        let alert = UIAlertController(title: "Error", message: "Connection Lost", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { (UIAlertAction) in
+            self.monitor.start(queue: self.queue)
+        }))
+        self.present(alert, animated: true, completion: nil)
         
         monitor.pathUpdateHandler = { path in
             if path.status == .satisfied {
                 self.viewModel.loadData(page: self.page)
                 self.monitor.cancel()
-            } else {
-                let alert = UIAlertController(title: "Error", message: "Connection Lost", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: { (UIAlertAction) in
-                }))
-                self.present(alert, animated: true, completion: nil)
-            }
+            } 
         }
         
         

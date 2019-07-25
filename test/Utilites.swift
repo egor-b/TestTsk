@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class Utilites {
     
@@ -59,6 +60,39 @@ class Utilites {
         
         return dateString
     }
+    
+    func loadDataFromCoreData(completion:@escaping(AnyObject?) -> Swift.Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "News")
+        do {
+            let result = try managedContext.fetch(fetchRequest)
+            completion(result as AnyObject)
+        } catch let error as NSError {
+            completion("\(error), \(error.userInfo)" as AnyObject)
+        }
+    }
+    
+    func cashDate() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "News", in: managedContext)!
+        let city = NSManagedObject(entity: entity, insertInto: managedContext)
+        city.setValue("", forKey: "name")
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
+}
+
+extension Notification.Name {
+    static let checkConnection = Notification.Name("checkConnection")
 }
 
 extension UIImageView {
